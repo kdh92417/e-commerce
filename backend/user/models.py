@@ -13,7 +13,7 @@ class User(AbstractBaseUser, PermissionsMixin, TimeStampModel):
 
     username = models.CharField(_("username"), max_length=45, validators=[username_validator], null=True)
     email = models.EmailField(_("email_address"), unique=True)
-    is_active = models.BooleanField(_("staff status"), default=False)
+    is_staff = models.BooleanField(_("Is staff"), default=False)
 
     object = UserManager()
     USERNAME_FIELD = "email"
