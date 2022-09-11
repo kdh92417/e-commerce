@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     # Apps
     "product",
     "user",
+    "order",
 ]
 
 MIDDLEWARE = [
