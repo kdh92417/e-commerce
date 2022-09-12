@@ -19,8 +19,7 @@ from django.contrib import admin
 
 from django.urls import path, include
 
-# urlpatterns = [
-#     path("admin/", admin.site.urls),
-#     path('api/users/', include('user.urls')),
-#     path("api/product/", include("product.urls")),
-# ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("api/v1/", include("backend.urls.api_v1"))
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
