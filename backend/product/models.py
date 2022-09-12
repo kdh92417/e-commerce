@@ -1,13 +1,31 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 
+from core.image import image_upload_path
 from core.models import TimeStampModel, ImageModel
 
 
-class Category(models.Model):
-    """상품 카테고리 모델"""
-
+class Tag(models.Model):
+    """
+    태그 모델
+    """
     name = models.CharField(max_length=45)
+
+    class Meta:
+        db_table = "tags"
+
+    def __str__(self):
+        return self.name
+
+
+class Category(models.Model):
+    """
+    카테고리 모델
+    """
+    name = models.CharField(max_length=45)
+
+    class Meta:
+        db_table = "categories"
 
     def __str__(self):
         return self.name
@@ -18,16 +36,31 @@ class Product(TimeStampModel):
 
     name = models.CharField(max_length=100)
     price = models.IntegerField(default=0)
+    discounted_price = models.IntegerField(blank=True, null=True)
     stock = models.IntegerField(default=1)
     description = models.TextField(null=True)
     like_count = models.IntegerField(default=0)
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+    category = models.ForeignKey(
+        Category, on_delete=models.CASCADE, null=False, blank=False
+    )
 
     class Meta:
         db_table = "products"
 
     def __str__(self):
         return self.name
+
+
+class ProductTag(models.Model):
+    product = models.ForeignKey(
+        Product, on_delete=models.CASCADE, null=False, blank=False
+    )
+    tag = models.ForeignKey(
+        Tag, on_delete=models.CASCADE, null=False, blank=False
+    )
+
+    class Meta:
+        db_table = "product_tags"
 
 
 class ProductReply(TimeStampModel):
@@ -53,9 +86,10 @@ class ProductImage(ImageModel, TimeStampModel):
     """상품 이미지 모델"""
 
     product = models.ForeignKey(
-        Product, on_delete=models.CASCADE, null=False, blank=False
+        Product, on_delete=models.CASCADE, null=False, blank=False, related_name="image"
     )
     is_thumbnail = models.BooleanField(default=False)
+    image = models.ImageField(upload_to=image_upload_path)
 
     class Meta:
         db_table = "product_images"
