@@ -46,19 +46,15 @@ INSTALLED_APPS = [
     # DRF
     "rest_framework",
     "rest_framework.authtoken",
-
     # django-rest-auth
-    'rest_framework_simplejwt',
+    "rest_framework_simplejwt",
     # 'rest_framework_simplejwt.token_blacklist',
-    'dj_rest_auth',
-    'dj_rest_auth.registration',
-
-
+    "dj_rest_auth",
+    "dj_rest_auth.registration",
     # django-allauth
-    'allauth',
-    'allauth.account',
+    "allauth",
+    "allauth.account",
     # 'allauth.socialaccount',
-
     # Apps
     "product",
     "user",
@@ -138,8 +134,8 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = "static/"
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -153,13 +149,13 @@ AUTH_USER_MODEL = "user.User"
 DRF CONF
 """
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': (
+    "DEFAULT_PERMISSION_CLASSES": (
         # 'rest_framework.permissions.IsAuthenticated',
     ),
-    'DEFAULT_AUTHENTICATION_CLASSES': (
+    "DEFAULT_AUTHENTICATION_CLASSES": (
         # "rest_framework_simplejwt.authentication.JWTAuthentication",
-        'rest_framework.authentication.SessionAuthentication',
-        'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
+        "rest_framework.authentication.SessionAuthentication",
+        "dj_rest_auth.jwt_auth.JWTCookieAuthentication",
     ),
 }
 """
@@ -171,15 +167,15 @@ ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_EMAIL_VERIFICATION = 'none'
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_EMAIL_VERIFICATION = "none"
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 REST_USE_JWT = True
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(hours=2),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
-    'ROTATE_REFRESH_TOKENS': False,
-    'BLACKLIST_AFTER_ROTATION': True,
+    "ACCESS_TOKEN_LIFETIME": timedelta(hours=2),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+    "ROTATE_REFRESH_TOKENS": False,
+    "BLACKLIST_AFTER_ROTATION": True,
     "TOKEN_USER_CLASS": "user.User",
 }
