@@ -9,6 +9,7 @@ class Tag(models.Model):
     """
     태그 모델
     """
+
     name = models.CharField(max_length=45)
 
     class Meta:
@@ -22,6 +23,7 @@ class Category(models.Model):
     """
     카테고리 모델
     """
+
     name = models.CharField(max_length=45)
 
     class Meta:
@@ -55,9 +57,7 @@ class ProductTag(models.Model):
     product = models.ForeignKey(
         Product, on_delete=models.CASCADE, null=False, blank=False
     )
-    tag = models.ForeignKey(
-        Tag, on_delete=models.CASCADE, null=False, blank=False
-    )
+    tag = models.ForeignKey(Tag, on_delete=models.CASCADE, null=False, blank=False)
 
     class Meta:
         db_table = "product_tags"
