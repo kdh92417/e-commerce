@@ -22,6 +22,7 @@ djangorestframework-simplejwt = "*"
 django-allauth = "*"
 dj-rest-auth = "*"
 pillow = "*"
+django-filter = "*"
 
 [dev-packages]
 
