@@ -1,3 +1,4 @@
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import status, viewsets
 from rest_framework.response import Response
 from rest_framework.utils import json
@@ -14,21 +15,17 @@ class ProductView(viewsets.ModelViewSet):
 
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ["category"]
 
     def get_serializer_context(self):
+        """불필요한 필드 제거"""
         context = super().get_serializer_context()
         if self.action == "list":
-            print("list")
-            # context['exclude_fields'] = ['parts']
+            context["exclude_fields"] = [
+                "create_time",
+                "update_time",
+                "stock",
+                "detail",
+            ]
         return context
-
-    # def list(self, request, *args, **kwargs):
-    #     queryset = self.filter_queryset(self.get_queryset())
-    #
-    #     page = self.paginate_queryset(queryset)
-    #     if page is not None:
-    #         serializer = self.get_serializer(page, many=True)
-    #         return self.get_paginated_response(serializer.data)
-    #
-    #     serializer = self.get_serializer(queryset, many=True)
-    #     return Response(serializer.data)
