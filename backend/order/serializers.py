@@ -76,3 +76,12 @@ class OrderSerializer(serializers.ModelSerializer):
         except Exception as e:
             transaction.set_rollback(rollback=True)
             return ValidationError(str(e))
+
+    def update(self, instance, validated_data):
+        """주문수정 유저와 주문생성 유저 유효성검사"""
+        is_staff = self.context["request"].user.is_staff
+        is_user_equal = True if instance.user == self.context["request"].user else False
+        if not is_staff and not is_user_equal:
+            raise ValidationError("주문한 유저가 아닙니다.")
+
+        return super().update(instance, validated_data)
