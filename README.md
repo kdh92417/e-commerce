@@ -4,8 +4,10 @@
 
 > E-Commerce 서비스를 위한 회원, 상품, 주문, 결제 API
 
+
 e-commerce 서비스인 [프루떼](https://www.fruitte.co.kr/shop_payment/?order_code=o20220914df3c69541b2b0) 를 참고하여 
 API를 만들었으며, 실제 유저가 상품을 조회, 주문, 결제한다는 가정하에 진행하였습니다.
+
 
 ### 주요 사항
 - DRF를 이용한 RESTFul API
@@ -51,7 +53,8 @@ API를 만들었으며, 실제 유저가 상품을 조회, 주문, 결제한다�
 
 
 ## ERD
-![]()
+## ERD
+![e-commerce ERD](https://user-images.githubusercontent.com/58774316/190128802-5026f92b-725a-40a1-a3bb-b9055a9fca6f.png)
 
 
 ## Reference Docs
