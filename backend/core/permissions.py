@@ -1,5 +1,8 @@
 from rest_framework import permissions
 
+# TODO: permission 고도화
+# REF: https://github.com/HyeonWooJo/ecommerce/blob/feature/payment/backend/orders/permissions.py
+
 
 class IsAdminOrReadOnly(permissions.BasePermission):
     """
