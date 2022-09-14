@@ -70,7 +70,7 @@ class OrderSerializer(serializers.ModelSerializer):
                 order.total_amount += (
                     obj.order_product_price * obj.product_quantity
                 ) + obj.delivery_fee
-
+            order.save()
             return order
 
         except Exception as e:
