@@ -1,11 +1,9 @@
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import status, viewsets
-from rest_framework.response import Response
-from rest_framework.utils import json
-from rest_framework.views import APIView
+from rest_framework import viewsets
 
+from core.permissions import IsAdminOrReadOnly
 from product.models import Product
-from product.serializers import ProductSerializer, ProductImageSerializer
+from product.serializers import ProductSerializer
 
 
 class ProductView(viewsets.ModelViewSet):
@@ -15,6 +13,7 @@ class ProductView(viewsets.ModelViewSet):
 
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    permission_classes = [IsAdminOrReadOnly]
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ["category"]
 
