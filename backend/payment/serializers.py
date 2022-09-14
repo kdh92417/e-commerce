@@ -35,7 +35,9 @@ class PaymentSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         """결제수정 요청한 유저와 결제한 유저 유효성검사"""
         is_staff = self.context["request"].user.is_staff
-        is_user_equal = True if instance.order.user == self.context["request"].user else False
+        is_user_equal = (
+            True if instance.order.user == self.context["request"].user else False
+        )
         if not is_staff and not is_user_equal:
             raise ValidationError("결제한 유저가 아닙니다.")
 
@@ -60,4 +62,3 @@ class PaymentSerializer(serializers.ModelSerializer):
         except Exception as e:
             transaction.set_rollback(rollback=True)
             raise ValidationError(str(e))
-

@@ -65,7 +65,7 @@ class ProductOption(models.Model):
     )
     name = models.CharField(max_length=100)
     extra_option_price = models.IntegerField()
-    create_at = models.DateTimeField(auto_now_add=True)
+    create_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)  # TODO: default value error
     update_at = models.DateTimeField(auto_now=True, null=True, blank=True)
 
     class Meta:
