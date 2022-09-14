@@ -53,7 +53,31 @@ class Product(TimeStampModel):
         return self.name
 
 
+class ProductOption(models.Model):
+    """상품옵션 모델"""
+
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        null=False,
+        blank=False,
+        related_name="option",
+    )
+    name = models.CharField(max_length=100)
+    extra_option_price = models.IntegerField()
+    create_at = models.DateTimeField(auto_now_add=True)
+    update_at = models.DateTimeField(auto_now=True, null=True, blank=True)
+
+    class Meta:
+        db_table = "product_options"
+
+    def __str__(self):
+        return self.name
+
+
 class ProductTag(models.Model):
+    """상품태그 모델"""
+
     product = models.ForeignKey(
         Product, on_delete=models.CASCADE, null=False, blank=False
     )
