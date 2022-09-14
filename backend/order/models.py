@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.db import models
 
 from core.models import TimeStampModel
-from product.models import Product
+from product.models import ProductOption
 
 
 class Order(TimeStampModel):
@@ -14,6 +14,9 @@ class Order(TimeStampModel):
     address = models.CharField(max_length=300)
     postal_code = models.CharField(max_length=45)
     receiver_name = models.CharField(max_length=45)
+    total_amount = models.IntegerField(default=0)
+    order_date = models.DateTimeField(auto_now_add=True)
+    update_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         db_table = "orders"
@@ -31,31 +34,25 @@ class OrderStatus(models.Model):
         return self.name
 
 
-class OrderDetail(TimeStampModel):
+class OrderProduct(TimeStampModel):
     """주문상세 모델"""
 
-    order = models.ForeignKey(Order, on_delete=models.CASCADE, null=False, blank=False)
-    product = models.ForeignKey(
-        Product, on_delete=models.CASCADE, null=False, blank=False
+    order = models.ForeignKey(
+        Order,
+        on_delete=models.CASCADE,
+        null=False,
+        blank=False,
+        related_name="order_products",
     )
-    status = models.ForeignKey(
-        OrderStatus, on_delete=models.CASCADE, null=False, blank=False
+    product_option = models.ForeignKey(
+        ProductOption, on_delete=models.CASCADE, null=False, blank=False
+    )
+    order_status = models.ForeignKey(
+        OrderStatus, on_delete=models.CASCADE, null=True, blank=True
     )
     product_quantity = models.IntegerField(default=1, null=False, blank=False)
-    product_price = models.IntegerField(default=0, null=False, blank=False)
+    order_product_price = models.IntegerField(default=0, null=False, blank=False)
+    delivery_fee = models.IntegerField(default=0, null=False, blank=False)
 
     class Meta:
-        db_table = "order_details"
-
-
-class Payment(models.Model):
-    """결재 모델"""
-
-    order = models.ForeignKey(Order, on_delete=models.CASCADE, null=False, blank=False)
-    payment_method = models.CharField(max_length=45)
-    amount = models.IntegerField()
-    payment_date = models.DateTimeField()
-    payment_status = models.CharField(max_length=45)
-
-    class Meta:
-        db_table = "payments"
+        db_table = "order_products"
