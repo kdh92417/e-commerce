@@ -1,12 +1,12 @@
 # E-Commerce API
-1. [프로젝트 내용](##-프로젝트-내용)
-   - [주요 사항](###-주요-사항)
-   - [구현 내용](###-구현-내용)
-2. [개발 기간](##-개발-기간)
-3. [기술 스택](##-기술-스택)
-4. [API Endpoints](##-api-endpoints)
-5. [ERD](##-erd)
-6. [Reference Docs](##-reference-docs)
+1. [프로젝트 내용](#프로젝트-내용)
+   - [주요 사항](#주요-사항)
+   - [구현 내용](#구현-내용)
+2. [개발 기간](#개발-기간)
+3. [기술 스택](#기술-스택)
+4. [API Endpoints](#api-endpoints)
+5. [ERD](#erd)
+6. [Reference Docs](#reference-docs)
 
 
 ## 프로젝트 내용
