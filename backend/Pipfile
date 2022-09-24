@@ -23,6 +23,7 @@ django-allauth = "*"
 dj-rest-auth = "*"
 pillow = "*"
 django-filter = "*"
+coverage = "*"
 
 [dev-packages]
 
