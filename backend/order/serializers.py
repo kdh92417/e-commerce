@@ -9,7 +9,6 @@ from user.serializers import UserSerializer
 
 
 class OrderProductSerializer(serializers.ModelSerializer):
-
     """주문상품 Serializer"""
 
     class Meta:
