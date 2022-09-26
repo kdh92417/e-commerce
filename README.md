@@ -136,6 +136,9 @@ python backend/manage.py test backend/tests/
 
 ### Test Coverage
 
+![스크린샷 2022-09-26 오전 11 38 53](https://user-images.githubusercontent.com/58774316/192183132-c3a7ff5c-fa4e-491f-a154-3488d5f499f0.png)
+
+![스크린샷 2022-09-26 오전 11 01 51](https://user-images.githubusercontent.com/58774316/192182955-339ce9e6-0a8f-44e0-be25-8fc21b8171e5.png)
 
 
 
