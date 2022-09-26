@@ -11,7 +11,7 @@ class OrderView(viewsets.ModelViewSet):
 
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
-    permission_classes = [IsAuthenticated, IsAdminOrSameUser]
+    permission_classes = [IsAuthenticated & IsAdminOrSameUser]
 
     def get_serializer_context(self):
         """불필요한 필드 제거"""
@@ -20,6 +20,7 @@ class OrderView(viewsets.ModelViewSet):
             context["exclude_fields"] = [
                 "order",
             ]
+
         return context
 
     def get_queryset(self):
