@@ -48,10 +48,12 @@ class ProductViewTest(TestSetUp):
             "stock": 100,
         }
 
-        response = self.client.post(reverse("products:product-list"), new_product)
+        response = self.client.post(
+            reverse("products:product-list"), new_product, format="multipart"
+        )
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(len(Product.objects.all()), 3)
+        self.assertEqual(Product.objects.count(), 3)
 
     def test_permission_error_create_product(self):
         """상품 생성 권한 테스트"""
@@ -66,7 +68,9 @@ class ProductViewTest(TestSetUp):
             "stock": 100,
         }
 
-        response = self.client.post(reverse("products:product-list"), new_product)
+        response = self.client.post(
+            reverse("products:product-list"), new_product, format="multipart"
+        )
 
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
