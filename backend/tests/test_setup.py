@@ -6,6 +6,7 @@ from django.core.files import File
 from rest_framework.test import APITestCase
 
 from order.models import Order, OrderProduct, OrderStatus
+from payment.models import Payment
 from product.models import (
     Product,
     ProductImage,
@@ -142,6 +143,13 @@ class TestSetUp(APITestCase):
                     postal_code="124421",
                     receiver_name="나폴레옹",
                 ),
+                Order(
+                    id=3,
+                    user=User.objects.get(email="admin@admin.com"),
+                    address="행신동",
+                    postal_code="999999",
+                    receiver_name="이순신",
+                ),
             ]
         )
 
@@ -149,33 +157,99 @@ class TestSetUp(APITestCase):
         product_option_2 = ProductOption.objects.get(id=2)
         product_option_3 = ProductOption.objects.get(id=3)
 
+        order_1 = Order.objects.get(id=1)
+        order_2 = Order.objects.get(id=2)
+        order_3 = Order.objects.get(id=3)
+
         OrderProduct.objects.bulk_create(
             [
                 OrderProduct(
-                    order=Order.objects.get(id=1),
+                    order=order_1,
                     product_option=product_option_1,
                     order_status=OrderStatus.objects.get(id=1),
                     product_quantity=3,
+                    delivery_fee=3000,
                     order_product_price=product_option_1.extra_option_price
                     + product_option_1.product.discounted_price,
                 ),
                 OrderProduct(
-                    order=Order.objects.get(id=1),
+                    order=order_1,
                     product_option=product_option_2,
                     order_status=OrderStatus.objects.get(id=1),
                     product_quantity=1,
+                    delivery_fee=4000,
                     order_product_price=product_option_2.extra_option_price
                     + product_option_2.product.discounted_price,
                 ),
                 OrderProduct(
-                    order=Order.objects.get(id=2),
+                    order=order_2,
                     product_option=product_option_3,
                     order_status=OrderStatus.objects.get(id=1),
                     product_quantity=5,
+                    delivery_fee=5000,
+                    order_product_price=product_option_3.extra_option_price
+                    + product_option_3.product.discounted_price,
+                ),
+                OrderProduct(
+                    order=order_3,
+                    product_option=product_option_3,
+                    order_status=OrderStatus.objects.get(id=1),
+                    product_quantity=5,
+                    delivery_fee=5000,
                     order_product_price=product_option_3.extra_option_price
                     + product_option_3.product.discounted_price,
                 ),
             ]
+        )
+
+        # 상품을 주문한 총 금액 계산
+        for op in order_1.order_products.all():
+            op.order_product_price = (
+                op.product_option.extra_option_price
+                + op.product_option.product.discounted_price
+            )
+            op.save()
+            order_1.total_amount += (
+                op.order_product_price * op.product_quantity
+            ) + op.delivery_fee
+            order_1.save()
+
+        for op in order_2.order_products.all():
+            op.order_product_price = (
+                op.product_option.extra_option_price
+                + op.product_option.product.discounted_price
+            )
+            op.save()
+            order_2.total_amount += (
+                op.order_product_price * op.product_quantity
+            ) + op.delivery_fee
+            order_2.save()
+
+        for op in order_3.order_products.all():
+            op.order_product_price = (
+                op.product_option.extra_option_price
+                + op.product_option.product.discounted_price
+            )
+            op.save()
+            order_3.total_amount += (
+                op.order_product_price * op.product_quantity
+            ) + op.delivery_fee
+            order_3.save()
+
+        Payment.objects.create(
+            id=1,
+            order=Order.objects.get(id=1),
+            payment_method="CC",
+            payment_total_amount=292000,
+            payment_status="PC",
+        )
+
+        Payment.objects.create(
+            id=2,
+            order=Order.objects.get(id=3),
+            payment_method="CC",
+            payment_total_amount=292000,
+            payment_status="PC",
         )
 
         return super().setUp()
@@ -202,4 +276,9 @@ class TestSetUp(APITestCase):
         Category.objects.all().delete()
         Tag.objects.all().delete()
         ProductImage.objects.all().delete()
+        OrderStatus.objects.all().delete()
+        OrderProduct.objects.all().delete()
+        Order.objects.all().delete()
+        Payment.objects.all().delete()
+
         return super().tearDown()

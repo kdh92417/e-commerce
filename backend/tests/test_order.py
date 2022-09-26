@@ -15,7 +15,7 @@ class OrderViewTest(TestSetUp):
         response = self.client.get(reverse("orders:order-list"), format="json")
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data), 2)
+        self.assertEqual(len(response.data), 3)
 
     def test_get_order_list_from_user(self):
         """일반 회원 주문 리스트 조회 Test : 자신이 등록한 주문만 조회"""
@@ -56,7 +56,7 @@ class OrderViewTest(TestSetUp):
             reverse("orders:order-list"), new_order, format="json"
         )
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(Order.objects.count(), 3)
+        self.assertEqual(Order.objects.count(), 4)
 
     def test_retrieve_order(self):
         """주문 상세 조회"""
@@ -108,6 +108,6 @@ class OrderViewTest(TestSetUp):
         )
 
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
-        self.assertEqual(Order.objects.count(), 1)
+        self.assertEqual(Order.objects.count(), 2)
         with self.assertRaises(ObjectDoesNotExist):
             Order.objects.get(id=1)
