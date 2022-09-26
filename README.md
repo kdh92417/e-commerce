@@ -5,8 +5,9 @@
 2. [개발 기간](#개발-기간)
 3. [기술 스택](#기술-스택)
 4. [API Endpoints](#api-endpoints)
-5. [ERD](#erd)
-6. [Reference Docs](#reference-docs)
+5. [Unit Test](#unit-test)
+6. [ERD](#erd)
+7. [Reference Docs](#reference-docs)
 
 
 ## 프로젝트 내용
@@ -21,9 +22,16 @@ API를 만들었으며, 실제 유저가 상품을 조회, 주문, 결제한다�
 - DRF를 이용한 RESTFul API
 - env파일및 setting값 분리를 통한 develop/deploy 환경 분리
 - User/Order/Payment/Product 도메인별 앱 분리
+- Unit Test 작성
 - sample DB: sample_db.sql
 
 ### 구현 내용
+#### 유저
+- 회원가입
+  - 유저는 email과 password를 입력하여 회원가입할 수 있습니다.
+- 로그인
+  - 유저는 회원가입했던 email과 password를 입력하여 로그인하고, access token및 refresh token를 받을 수 있습니다.
+
 #### 상품  
 - 상품 생성
 	- 관리자는 상품상세를 등록할 수 있습니다.   
@@ -73,16 +81,20 @@ API를 만들었으며, 실제 유저가 상품을 조회, 주문, 결제한다�
 - 결제 상세정보 조회
 	- 유저 또는 관리자는 결제 상세 정보를 조회합니다.
 
-
+<br>
 
 ## 개발기간
 - 요구사항 개발 및 문서작업: 2022.09.09 ~ 2022.09.15
 - 테스트 작성 및 배포: 미정
 
+<br>
+
 ## 개발 스택
 - Backend: `Django Rest Framework`
 - DB: `MySQL`
 - Tool: `Github`
+
+<br>
 
 ## API Endpoints
 
@@ -110,10 +122,29 @@ API를 만들었으며, 실제 유저가 상품을 조회, 주문, 결제한다�
 |  | 〃 | DELETE | 주문 삭제 | 사용자/관리자 |
 |  | 〃 | GET | 주문 상세 조회 | 사용자/관리자 |
 
+<br>
+
+## Unit Test
+
+> Product, Order, Payment의 Unit Test 작성
+
+### 테스트 실행
+
+```bash
+python backend/manage.py test backend/tests/
+```
+
+### Test Coverage
+
+
+
+
+<br>
 
 ## ERD
 ![e-commerce ERD](https://user-images.githubusercontent.com/58774316/190128802-5026f92b-725a-40a1-a3bb-b9055a9fca6f.png)
 
+<br>
 
 ## Reference Docs
 - [Postman API Docs](https://documenter.getpostman.com/view/11682851/2s7YYu7ivV)
