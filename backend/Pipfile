@@ -24,6 +24,7 @@ dj-rest-auth = "*"
 pillow = "*"
 django-filter = "*"
 coverage = "*"
+gunicorn = "*"
 
 [dev-packages]
 
