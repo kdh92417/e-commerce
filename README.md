@@ -23,7 +23,7 @@ API를 만들었으며, 실제 유저가 상품을 조회, 주문, 결제한다�
 - env파일및 setting값 분리를 통한 develop/deploy 환경 분리
 - User/Order/Payment/Product 도메인별 앱 분리
 - Unit Test 작성
-- sample DB: sample_db.sql
+- sample DB: mysql/sqls/sample_data.sql
 
 ### 구현 내용
 #### 유저
