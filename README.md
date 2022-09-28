@@ -147,8 +147,6 @@ python backend/manage.py test backend/tests/
 
 ### AWS EC2에 배포
 
-> 현재 배포 공인 주소 : http://3.38.117.83/
-
 - Nginx : 웹서버
 - Gunicorn : Nginx와 Django의 호환 미들웨어
 - Django : E-Commerce API
