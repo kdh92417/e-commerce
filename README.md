@@ -20,10 +20,11 @@
 API를 만들었으며, 실제 유저가 상품을 조회, 주문, 결제한다는 가정하에 진행
 
 - DRF를 이용한 RESTFul API
-- env파일및 setting값 분리를 통한 develop/deploy 환경 분리
-- User/Order/Payment/Product 도메인별 앱 분리
+- JWT를 이용한 유저 인증/인가
 - Unit Test 작성
+- Project Dockerize
 - sample DB: mysql/sqls/sample_data.sql
+- Nginx, Django, MySQL, Docker를 AWS(EC2)에 배포
 
 ### 구현 내용
 #### 유저
@@ -139,6 +140,31 @@ python backend/manage.py test backend/tests/
 ![스크린샷 2022-09-26 오전 11 38 53](https://user-images.githubusercontent.com/58774316/192183132-c3a7ff5c-fa4e-491f-a154-3488d5f499f0.png)
 
 ![스크린샷 2022-09-26 오전 11 01 51](https://user-images.githubusercontent.com/58774316/192182955-339ce9e6-0a8f-44e0-be25-8fc21b8171e5.png)
+
+<br>
+
+## 배포
+
+### AWS EC2에 배포
+
+> 현재 배포 공인 주소 : http://3.38.117.83/
+
+- Nginx : 웹서버
+- Gunicorn : Nginx와 Django의 호환 미들웨어
+- Django : E-Commerce API
+- MySQL : E-Commerce RDBMS
+- Docker : 웹서버, API 서버, DB를 각각 컨테이너로 생성 및 연결
+
+### 구조
+![배포 구조 001](https://user-images.githubusercontent.com/58774316/192675227-24c92f3a-3e33-40f2-8918-68ecb69d63f3.png)
+
+
+### 배포 API Test
+
+
+https://user-images.githubusercontent.com/58774316/192676158-7560d180-ccd0-48bd-a92d-23751586efc2.mov
+
+
 
 
 
