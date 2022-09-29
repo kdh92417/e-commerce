@@ -6,8 +6,14 @@
 3. [기술 스택](#기술-스택)
 4. [API Endpoints](#api-endpoints)
 5. [Unit Test](#unit-test)
-6. [ERD](#erd)
-7. [Reference Docs](#reference-docs)
+   - [테스트 실행](#테스트-실행)
+   - [Test Coverage](#test-coverage)
+6. [배포](#배포)
+   - [AWS EC2에 배포](#aws-ec2에-배포)
+   - [구조](#구조)
+   - [배포 API Test](#배포-api-test)
+7. [ERD](#erd)
+8. [Reference Docs](#reference-docs)
 
 
 ## 프로젝트 내용
@@ -84,9 +90,9 @@ API를 만들었으며, 실제 유저가 상품을 조회, 주문, 결제한다�
 
 <br>
 
-## 개발기간
+## 개발 기간
 - 요구사항 개발 및 문서작업: 2022.09.09 ~ 2022.09.15
-- 테스트 작성 및 배포: 미정
+- 테스트 작성 및 배포: 2022.09.24 ~ 2022.09.29
 
 <br>
 
@@ -159,12 +165,7 @@ python backend/manage.py test backend/tests/
 
 ### 배포 API Test
 
-
 https://user-images.githubusercontent.com/58774316/192676158-7560d180-ccd0-48bd-a92d-23751586efc2.mov
-
-
-
-
 
 <br>
 
@@ -175,3 +176,4 @@ https://user-images.githubusercontent.com/58774316/192676158-7560d180-ccd0-48bd-
 
 ## Reference Docs
 - [Postman API Docs](https://documenter.getpostman.com/view/11682851/2s7YYu7ivV)
+
