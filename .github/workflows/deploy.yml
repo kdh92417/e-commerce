@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: checkout
-      uses: actions/checkout@develop
+      uses: actions/checkout@master
 
     - name: create env file
       run: |
@@ -20,7 +20,7 @@ jobs:
         echo "${{ secrets.ENV_VARS }}" >> .env
     
     - name: create remote directory
-      uses: appleboy/ssh-action@develop
+      uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.HOST_NAME }}
         username: ubuntu
