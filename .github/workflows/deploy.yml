@@ -22,7 +22,7 @@ jobs:
     - name: create remote directory
       uses: appleboy/ssh-action@master
       with:
-        host: ${{ secrets.HOST_NAME }}
+        host: ${{ secrets.HOST }}
         username: ubuntu
         key: ${{ secrets.AWS_PRIVATE_KEY }}
         script: mkdir -p /home/ubuntu/github
@@ -32,14 +32,14 @@ jobs:
       with:
         switches: -avzr --delete
         remote_path: /home/ubuntu/github/
-        remote_host: ${{ secrets.HOST_NAME }}
+        remote_host: ${{ secrets.HOST }}
         remote_user: ubuntu
         remote_key: ${{ secrets.AWS_PRIVATE_KEY }}
         
     - name: executing remote ssh commands using password
       uses: appleboy/ssh-action@master
       with:
-        host: ${{ secrets.HOST_NAME }}
+        host: ${{ secrets.HOST }}
         username: ubuntu
         key: ${{ secrets.AWS_PRIVATE_KEY }}
         script: |
