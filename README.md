@@ -160,7 +160,8 @@ python backend/manage.py test backend/tests/
 - Docker : 웹서버, API 서버, DB를 각각 컨테이너로 생성 및 연결
 
 ### 구조
-![배포 구조 001](https://user-images.githubusercontent.com/58774316/192675227-24c92f3a-3e33-40f2-8918-68ecb69d63f3.png)
+![배포 구조 001](https://user-images.githubusercontent.com/58774316/192912753-7cc5dd37-9662-400e-bff2-714357282c8a.png)
+
 
 
 ### 배포 API Test
