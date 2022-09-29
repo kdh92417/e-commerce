@@ -34,7 +34,6 @@ services:
     env_file:
       - .env
     build: ./backend
-    command: python manage.py runserver 0.0.0.0:8000
     ports:
       - "8000:8000"
     networks:
@@ -44,6 +43,7 @@ services:
     build: ./nginx
     volumes:
       - ./backend/.media_root:/backend/.media_root
+      - ./backend/static:/backend/static
     ports:
       - "80:80"
     depends_on:
