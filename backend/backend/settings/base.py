@@ -140,8 +140,12 @@ USE_TZ = False
 # Static Files
 STATIC_URL = "/static/"
 STATIC_DIR = os.path.join(BASE_DIR, "static")
-STATIC_ROOT = os.path.join(ROOT_DIR, ".static_root")
+STATIC_ROOT = os.path.join(ROOT_DIR, "static")
 
+STATICFILES_DIRS = [
+    os.path.join(STATIC_ROOT, "admin"),
+    os.path.join(STATIC_ROOT, "rest_framework"),
+]
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(ROOT_DIR, ".media_root")
