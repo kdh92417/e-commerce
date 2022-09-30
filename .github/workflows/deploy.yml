@@ -18,7 +18,7 @@ jobs:
       run: |
         touch .env
         echo "${{ secrets.ENV_VARS }}" >> .env
-        echo "${{ secrets.AWS_PRIVATE_KEY }}"
+        echo "$secrets.AWS_PRIVATE_KEY"
     
     - name: create remote directory
       uses: appleboy/ssh-action@master
