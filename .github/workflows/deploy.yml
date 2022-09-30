@@ -11,10 +11,9 @@ jobs:
     name: build
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
     - name: checkout
-      uses: actions/checkout@master
 
-    - name: create env file
       env:
             PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY  }}
             HOSTNAME : ${{ secrets.HOST  }}
