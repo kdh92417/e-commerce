@@ -26,11 +26,12 @@
 API를 만들었으며, 실제 유저가 상품을 조회, 주문, 결제한다는 가정하에 진행
 
 - DRF를 이용한 RESTFul API
+- 유저/관리자 권한에따른 기능 구현
 - JWT를 이용한 유저 인증/인가
 - Unit Test 작성
-- Project Dockerize
-- sample DB: mysql/sqls/sample_data.sql
+- Project Dockerizing
 - Nginx, Django, MySQL, Docker를 AWS(EC2)에 배포
+- Github Actions를 이용한 CI/CD
 
 ### 구현 내용
 #### 유저
@@ -55,8 +56,8 @@ API를 만들었으며, 실제 유저가 상품을 조회, 주문, 결제한다�
 - 상품 상세 정보 조회
 	- 모든 사용자는 상품 상세내용 조회  
 	- 상품 상세 정보, 메인이미지, 상세이미지를 조회   
-  
-  
+
+
 #### 주문  
 - 주문 생성
 	- 로그인한 유저는 여러 상품에대한 제품이 담긴 주문을 생성할 수 있습니다.  
@@ -99,7 +100,9 @@ API를 만들었으며, 실제 유저가 상품을 조회, 주문, 결제한다�
 ## 개발 스택
 - Backend: `Django Rest Framework`
 - DB: `MySQL`
+- Infra: `Github Actions`, `AWS` , `Docker` , `Nginx`
 - Tool: `Github`
+- 패키지관리: `pipenv`
 
 <br>
 
