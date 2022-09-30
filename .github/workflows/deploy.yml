@@ -12,38 +12,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: checkout
-      uses: actions/checkout@develop
+      uses: actions/checkout@master
 
     - name: create env file
       env:
           MATRIX_CONTEXT: ${{ secrets.AWS_PRIVATE_KEY }}
       run: |
         touch .env
+        touch .secret
         echo "${{ secrets.ENV_VARS }}" >> .env
-        echo "$MATRIX_CONTEXT"
-    
-    - name: create remote directory
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        username: ubuntu
-        key: ${{ secrets.AWS_PRIVATE_KEY }}
-        script: mkdir -p /home/ubuntu/github
-        
-    - name: copy source via ssh key
-      uses: burnett01/rsync-deployments@4.1
-      with:
-        switches: -avzr --delete
-        remote_path: /home/ubuntu/github/
-        remote_host: ${{ secrets.HOST }}
-        remote_user: ubuntu
-        remote_key: ${{ secrets.AWS_PRIVATE_KEY }}
-        
-    - name: executing remote ssh commands using password
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        username: ubuntu
-        key: ${{ secrets.AWS_PRIVATE_KEY }}
-        script: |
-          sh /home/ubuntu/github/deploy/deploy.sh
+        echo "${{ secrets.AWS_PRIVATE_KEY }}" >> .secret
