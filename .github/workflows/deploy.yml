@@ -26,6 +26,3 @@ jobs:
 
         cd /home/ubuntu &&
         touch .env
-        touch .secret
-        echo "${{ secrets.ENV_VARS }}" >> .env
-        echo "${{ secrets.AWS_PRIVATE_KEY }}" >> .secret
