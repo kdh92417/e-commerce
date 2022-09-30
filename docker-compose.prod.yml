@@ -7,7 +7,7 @@ services:
     volumes:
       - ./backend:/backend
     environment:
-      DJANGO_SETTINGS_MODULE: backend.backend.settings.deploy
+      DJANGO_SETTINGS_MODULE: backend.settings.deploy
     env_file:
       - .env
     build: ./backend
