@@ -28,5 +28,5 @@ jobs:
           git fetch --all &&
           git reset --hard origin/develop &&
           git pull origin develop &&
-          docker-compose -f docker-compose.prod.yml up -d --build 
+          sudo docker-compose -f docker-compose.prod.yml up -d --build 
         '
