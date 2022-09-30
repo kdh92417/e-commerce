@@ -7,10 +7,10 @@ services:
     restart: always
     tty: true
     environment:
-      MYSQL_DATABASE: ${DB_NAME}
-      MYSQL_USER: ${DB_USER}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
-      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ecommerce
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user
+      MYSQL_ROOT_PASSWORD: root
       TZ: Asia/Seoul
     command: # 명령어 실행
       - --character-set-server=utf8mb4
@@ -31,6 +31,8 @@ services:
       - mysql
     volumes:
       - ./backend:/backend
+    environment:
+      DJANGO_SETTINGS_MODULE: backend.backend.settings.develop
     env_file:
       - .env
     build: ./backend
