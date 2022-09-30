@@ -15,10 +15,12 @@ jobs:
       uses: actions/checkout@master
 
     - name: create env file
+      env:
+          MATRIX_CONTEXT: ${{ secrets.AWS_PRIVATE_KEY }}
       run: |
         touch .env
         echo "${{ secrets.ENV_VARS }}" >> .env
-        echo "$secrets.AWS_PRIVATE_KEY"
+        echo "$MATRIX_CONTEXT"
     
     - name: create remote directory
       uses: appleboy/ssh-action@master
