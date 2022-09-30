@@ -26,7 +26,7 @@ jobs:
           cd /home/ubuntu/e-commerce &&
           git checkout develop &&
           git fetch --all &&
-          git reset --hard origin/master &&
+          git reset --hard origin/develop &&
           git pull origin develop &&
           docker-compose -f docker-compose.prod.yml up -d --build 
         '
