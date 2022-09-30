@@ -16,9 +16,15 @@ jobs:
 
     - name: create env file
       env:
-          MATRIX_CONTEXT: ${{ secrets.AWS_PRIVATE_KEY }}
+            PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY  }}
+            HOSTNAME : ${{ secrets.HOST  }}
+            USER_NAME : ${{ secrets.USER_NAME  }}
+            ENV_VARS : ${{ secrets.ENV_VARS  }}
       run: |
-        cd /home/ubuntu
+        echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+        ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
+
+        cd /home/ubuntu &&
         touch .env
         touch .secret
         echo "${{ secrets.ENV_VARS }}" >> .env
