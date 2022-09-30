@@ -18,6 +18,7 @@ jobs:
       env:
           MATRIX_CONTEXT: ${{ secrets.AWS_PRIVATE_KEY }}
       run: |
+        cd /home/ubuntu
         touch .env
         touch .secret
         echo "${{ secrets.ENV_VARS }}" >> .env
