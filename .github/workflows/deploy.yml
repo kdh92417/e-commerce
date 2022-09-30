@@ -11,19 +11,36 @@ jobs:
     name: build
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
     - name: checkout
+      uses: actions/checkout@v3
 
-      env:
-            PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY  }}
-            HOSTNAME : ${{ secrets.HOST  }}
-            USER_NAME : ${{ secrets.USER_NAME  }}
-            ENV_VARS : ${{ secrets.ENV_VARS  }}
+    - name: create env file
       run: |
-        echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-        ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
-
-          cd /home/ubuntu/e-commerce &&
-          touch .env &&
-          echo "$ENV_VARS" >> .env
-        '
+        touch .env
+        echo "${{ secrets.ENV_VARS }}" >> .env
+    
+    - name: create remote directory
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ubuntu
+        key: ${{ secrets.AWS_PRIVATE_KEY }}
+        script: cd /home/ubuntu/e-commerce
+        
+    - name: copy source via ssh key
+      uses: burnett01/rsync-deployments@4.1
+      with:
+        switches: -avzr --delete
+        remote_path: /home/ubuntu/e-commerce/
+        remote_host: ${{ secrets.HOST }}
+        remote_user: ubuntu
+        remote_key: ${{ secrets.AWS_PRIVATE_KEY }}
+        
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ubuntu
+        key: ${{ secrets.AWS_PRIVATE_KEY }}
+        script: |
+          sh /home/ubuntu/e-commerce/deploy/deploy.sh
