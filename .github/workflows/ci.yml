@@ -1,10 +1,8 @@
 name: PR Test [Service]
-
 on:
-  push:
-    branches: [ "main", "develop" ]
   pull_request:
-    branches: [ "main", "develop" ]
+    branches:
+      - develop
 
 jobs:
   build:
@@ -12,11 +10,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Test
+    - name: Build
       run: |
         git fetch
         ls -al
         touch .env
         echo "${{ secrets.ENV_VARS }}" >> .env
-        docker-compose up --build
+        docker-compose up -d --build
+
+    - name: Test
+      run: |
+        docker exec backend /bin/bash python manage.py test tests/
+        
+        
         
