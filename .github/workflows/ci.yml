@@ -18,9 +18,13 @@ jobs:
         echo "${{ secrets.ENV_VARS }}" >> .env
         docker-compose up -d --build
 
+    - name: Wait for database
+      run: |
+        docker exec backend python manage.py wait_for_db
+
     - name: Test
       run: |
-        docker exec backend /bin/bash python manage.py test tests/
+        docker exec backend python manage.py test tests/
         
         
         
