@@ -22,6 +22,11 @@ jobs:
         echo "${{ secrets.ENV_VARS }}" >> .env
         docker-compose up -d --build
         docker exec backend python manage.py wait_for_db
+        
+    - name: Migrations
+      run: |
+        docker exec backend python manage.py makemigrations user product order payment
+        docker exec backend python manage.py migrate
 
     - name: Test
       run: |
