@@ -10,7 +10,7 @@ services:
       MYSQL_DATABASE: ecommerce
       MYSQL_USER: user
       MYSQL_PASSWORD: user
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: admin
       TZ: Asia/Seoul
     command: # 명령어 실행
       - --character-set-server=utf8mb4
