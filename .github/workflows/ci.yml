@@ -24,7 +24,7 @@ jobs:
 
     - name: Test
       run: |
-        docker exec backend python manage.py test tests/
-        
+        docker exec -it backend /bin/bash
+        python manage.py test tests/
         
         
