@@ -1,4 +1,5 @@
 name: PR Test [Service]
+
 on:
   pull_request:
     branches:
@@ -8,8 +9,8 @@ on:
       - develop
 
 jobs:
-  build:
-    name: build
+  Test:
+    name: test
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -21,10 +22,13 @@ jobs:
         echo "${{ secrets.ENV_VARS }}" >> .env
         docker-compose up -d --build
         docker exec backend python manage.py wait_for_db
+        
+    - name: Migrations
+      run: |
+        docker exec backend python manage.py makemigrations user product order payment
+        docker exec backend python manage.py migrate
 
     - name: Test
-        docker exec -it backend /bin/bash
-        python manage.py test tests/
-        
-        
+      run: |
+        docker exec backend python manage.py test tests/
         
