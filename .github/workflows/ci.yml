@@ -1,4 +1,5 @@
 name: PR Test [Service]
+
 on:
   pull_request:
     branches:
@@ -23,6 +24,7 @@ jobs:
         docker exec backend python manage.py wait_for_db
 
     - name: Test
+      run: |
         docker exec -it backend /bin/bash
         python manage.py test tests/
         
