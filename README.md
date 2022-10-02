@@ -1,5 +1,5 @@
 [![Deploy](https://github.com/kdh92417/e-commerce/actions/workflows/deploy.yml/badge.svg)](https://github.com/kdh92417/e-commerce/actions/workflows/deploy.yml)
-
+[![PR Test [Service]](https://github.com/kdh92417/e-commerce/actions/workflows/ci.yml/badge.svg)](https://github.com/kdh92417/e-commerce/actions/workflows/ci.yml)
 
 # E-Commerce API
 1. [프로젝트 내용](#프로젝트-내용)
@@ -163,11 +163,12 @@ python backend/manage.py test backend/tests/
 - Nginx : 웹서버
 - Gunicorn : Nginx와 Django의 호환 미들웨어
 - Django : E-Commerce API
-- MySQL : E-Commerce RDBMS
-- Docker : 웹서버, API 서버, DB를 각각 컨테이너로 생성 및 연결
+- RDS(MySQL) : E-Commerce RDBMS
+- Docker : 웹서버, API 서버를 각각 컨테이너로 생성 및 연결
 
 ### 구조
-![배포 구조 001](https://user-images.githubusercontent.com/58774316/192912753-7cc5dd37-9662-400e-bff2-714357282c8a.png)
+![배포 구조 001](https://user-images.githubusercontent.com/58774316/193437395-ba721176-d842-4f96-b442-d0de9c45d181.png)
+
 
 
 
