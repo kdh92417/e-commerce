@@ -13,8 +13,7 @@ jobs:
     name: build
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: checkout
+    - name: deploy
 
       env:
             PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY  }}
